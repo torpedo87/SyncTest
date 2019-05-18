@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F131a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUpdateNeeded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="markedForDeletionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="markedForRemoteDeletion" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="metadata" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="modified" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="remoteIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="notes" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Note" inverseName="folder" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="contents" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUpdateNeeded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="markedForDeletionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="markedForRemoteDeletion" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="metadata" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="modified" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="remoteIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="folder" maxCount="1" deletionRule="No Action" destinationEntity="Folder" inverseName="notes" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="photos" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Photo" inverseName="note" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <attribute name="insertedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="photoData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="photos" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Folder" positionX="-63" positionY="45" width="128" height="180"/>
+        <element name="Note" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="Photo" positionX="-45" positionY="72" width="128" height="90"/>
+    </elements>
+</model>
